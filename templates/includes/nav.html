@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+            <nav class="navbar navbar-default navbar-static-top">
+
+    {#                nav para el movil #}
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+{#            nav version normal #}
+
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li {% if activa_index %} class="active"{% endif %} ><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                            <li {% if profile %}class="active"{% endif %}><a href="/profile">Profile</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if not user.is_authenticated  %}
+                                <li {% ifequal signup 'signup' %}class="active"{% endifequal %}><a href="/signup">SignUp</a></li>
+                                <li {% ifequal signup 'login' %}class="active"{% endifequal %}><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            {% endif %}
+
+                            {% if not signup and  user.is_authenticated%}
+                            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
+                            {% endif %}
+                        </ul>
+
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+    </div>
+</div>
